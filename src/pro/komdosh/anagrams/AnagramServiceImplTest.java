@@ -17,7 +17,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "many Geurer hs beautla natifu";
 
-        assertTrue(anagramService.checkAnagram(first, second, true));
+        assertTrue(anagramService.checkAnagram(first, second, true, true));
     }
 
     @Test
@@ -25,7 +25,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "many Gedrer hs beautla natifu";
 
-        assertFalse(anagramService.checkAnagram(first, second, true));
+        assertFalse(anagramService.checkAnagram(first, second, true, true));
     }
 
     @Test
@@ -33,7 +33,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "many Geurer hs beautlanatifu";
 
-        assertTrue(anagramService.checkAnagram(first, second, true));
+        assertTrue(anagramService.checkAnagram(first, second, true, true));
     }
 
     @Test
@@ -41,7 +41,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "many Geurer hs beautla nati fu";
 
-        assertFalse(anagramService.checkAnagram(first, second, false));
+        assertFalse(anagramService.checkAnagram(first, second, false, true));
     }
 
     @Test
@@ -49,7 +49,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "Germany has beautiful nature.";
 
-        assertFalse(anagramService.checkAnagram(first, second, true));
+        assertFalse(anagramService.checkAnagram(first, second, true, true));
     }
 
     @Test
@@ -57,7 +57,7 @@ class AnagramServiceImplTest {
         String first = "Germany has beautiful nature";
         String second = "many Geurer hs beautla natifu";
 
-        assertTrue(anagramService.checkAnagram(first, second, true));
+        assertTrue(anagramService.checkAnagram(first, second, true, true));
     }
 
     @Test
@@ -68,7 +68,7 @@ class AnagramServiceImplTest {
             "autmany elrer hs ba natiGeufu"
         );
 
-        assertTrue(anagramService.checkAnagram(texts, true));
+        assertTrue(anagramService.checkAnagram(texts, true, true));
     }
 
     @Test
@@ -78,14 +78,14 @@ class AnagramServiceImplTest {
             "11"
         );
 
-        assertFalse(anagramService.checkAnagram(texts, true));
+        assertFalse(anagramService.checkAnagram(texts, true, true));
     }
 
     @Test
     void checkAnagramTestListEmptyThrowsException() {
         List<String> texts = List.of();
 
-        assertThrows(IllegalArgumentException.class,()-> anagramService.checkAnagram(texts, true));
+        assertThrows(IllegalArgumentException.class,()-> anagramService.checkAnagram(texts, true, true));
     }
 
     @Test
@@ -94,6 +94,6 @@ class AnagramServiceImplTest {
             "Only one text throws"
         );
 
-        assertThrows(IllegalArgumentException.class,()-> anagramService.checkAnagram(texts, true));
+        assertThrows(IllegalArgumentException.class,()-> anagramService.checkAnagram(texts, true, true));
     }
 }

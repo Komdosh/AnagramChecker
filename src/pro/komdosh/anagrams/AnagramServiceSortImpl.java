@@ -2,6 +2,7 @@ package pro.komdosh.anagrams;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class AnagramServiceSortImpl implements AnagramService {
@@ -22,15 +23,20 @@ public class AnagramServiceSortImpl implements AnagramService {
      * @param text1 - first text to check
      * @param text2 - second text to check
      * @param skipWhitespace - for use case, where we need to skip whitespaces
+     * @param caseInsensitive - for use case, where we need to check with case insensitive
      * @return true if two texts are anagram
      */
     @Override
-    public boolean checkAnagram(final String text1, final String text2, boolean skipWhitespace) {
+    public boolean checkAnagram(final String text1, final String text2, boolean skipWhitespace, boolean caseInsensitive) {
         String first = text1;
         String second = text2;
         if (skipWhitespace) {
             first = text1.replaceAll(" ", "");
             second = text2.replaceAll(" ", "");
+        }
+        if (caseInsensitive) {
+            first = first.toLowerCase(Locale.ROOT);
+            second = second.toLowerCase(Locale.ROOT);
         }
         if (first.length() != second.length()) {
             return false;
@@ -47,10 +53,11 @@ public class AnagramServiceSortImpl implements AnagramService {
      *
      * @param inputTexts - list of texts to check
      * @param skipWhitespaces - for use case, where we need to skip whitespaces
+     * @param caseInsensitive - for use case, where we need to check with case insensitive
      * @return true if all texts are anagram
      */
     @Override
-    public boolean checkAnagram(final List<String> inputTexts, boolean skipWhitespaces) {
+    public boolean checkAnagram(final List<String> inputTexts, boolean skipWhitespaces, boolean caseInsensitive) {
         if (inputTexts.isEmpty()) {
             throw new IllegalArgumentException("List of inputTexts can't be empty");
         }
@@ -61,6 +68,9 @@ public class AnagramServiceSortImpl implements AnagramService {
         List<String> texts = inputTexts;
         if (skipWhitespaces) {
             texts = inputTexts.stream().map(text -> text.replaceAll(" ", "")).collect(Collectors.toList());
+        }
+        if (caseInsensitive) {
+            texts = texts.stream().map(text -> text.toLowerCase(Locale.ROOT)).collect(Collectors.toList());
         }
 
         int firstTextSize = texts.get(0).length();
