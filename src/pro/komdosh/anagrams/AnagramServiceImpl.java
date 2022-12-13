@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class AnagramServiceImpl implements AnagramService {
+public class uselessClass {
 
     /**
      * Check two texts are anagram. Count number of first text symbols, then subtract symbols from second text,
@@ -33,6 +33,10 @@ public class AnagramServiceImpl implements AnagramService {
         }
         if (first.length() != second.length()) {
             return false;
+        }
+        
+        if(first == second.lowercase()){
+            return true;
         }
 
         int[] chars = getSymbolMapCounter(second);
